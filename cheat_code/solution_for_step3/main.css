@@ -1,0 +1,17 @@
+#list li {
+
+}
+
+/* To avoid a bug in versions previous to Chrome 28 */
+[contenteditable], input {
+  -webkit-user-select: auto;
+}
+
+#list li a {
+  margin-left: 10px;
+  visibility: hidden;
+}
+
+#list li:hover a {
+  visibility: visible;
+}

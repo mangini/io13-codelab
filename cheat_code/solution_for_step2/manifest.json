@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "I/O Codelab - Step 2",
+  "version": "1",
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "permissions": [],
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "minimum_chrome_version": "27"
+}

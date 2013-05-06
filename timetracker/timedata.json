@@ -1,0 +1,38 @@
+[
+  { 
+    "title": "Step 1 - Create and run a minimum app",
+    "timeInMinutes": 10,
+    "note": ""
+  },
+  { 
+    "title": "Step 2 - Create a simple ToDo List",
+    "timeInMinutes": 10,
+    "note": ""
+  },
+  { 
+    "title": "Step 3 - Persist To Do's",
+    "timeInMinutes": 10,
+    "note": ""
+  },
+  { 
+    "title": "Step 4 - Alarms and notifications",
+    "timeInMinutes": 20,
+    "note": ""
+  },
+  { 
+    "title": "Step 5 - Parse URLs and open then in a Webview",
+    "timeInMinutes": 20,
+    "note": ""
+  },
+  { 
+    "title": "Step 6 - Add images from the web",
+    "timeInMinutes": 20,
+    "note": ""
+  },
+  { 
+    "title": "Step 7 - Export ToDo's to the filesystem",
+    "timeInMinutes": 10,
+    "note": ""
+  }
+  
+]

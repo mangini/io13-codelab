@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "Codelab ticker",
+  "version": "1",
+  "permissions": ["alarms", "storage", "fullscreen"],
+  "app": {
+    "background": {
+      "scripts": ["main.js"]
+    }
+  },
+  "minimum_chrome_version": "23"
+
+}

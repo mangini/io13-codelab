@@ -1,0 +1,25 @@
+body {
+  -webkit-app-region: drag;
+  background: white;
+  color: #222;
+  font-family: Open Sans, sans;
+  text-align: center;
+}
+
+div.section {
+  display: block;
+}
+
+body.running .section:not(.show-on-running) {
+  display: none;
+}
+
+body:not(.running) .section.show-on-running {
+  display: none;
+}
+
+.warning {
+  color: #990000;
+  font-size: 36px;
+  font-weight: bold;
+}

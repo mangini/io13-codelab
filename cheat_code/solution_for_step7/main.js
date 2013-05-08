@@ -1,4 +1,3 @@
-
 window.addEventListener('DOMContentLoaded', function() {
 
   var list = document.getElementById('list');
@@ -61,7 +60,7 @@ window.addEventListener('DOMContentLoaded', function() {
     chrome.storage.local.set({'data': getItemsFromList(list)});
   }
 
-  var alarmName = 'shownotification';
+  var alarmName = 'remindme';
 
   function checkAlarm(callback) {
     chrome.alarms.getAll(function(alarms) {

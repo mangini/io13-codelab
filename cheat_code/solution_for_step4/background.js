@@ -4,35 +4,46 @@
  * @see http://developer.chrome.com/apps/app.window.html
  */
 
+var dbName = 'todos-vanillajs';
+
 function launch() {
-  chrome.app.window.create('main.html', {
+  chrome.app.window.create('index.html', {
     id: 'main',
-    bounds: { width: 300, height: 300 }
+    bounds: { width: 620, height: 500 }
   });
 }
 
 function showNotification(storedData) {
 
-    if (storedData.data.length>0) {
+  var openTodos = 0;
 
-      // When the user clicks on the notification, we want to open the To Do list
-      chrome.notifications.onClicked.addListener(function( notificationId ) {
-        launch();
-        chrome.notifications.clear(notificationId, function() {});
-      });
+  if ( storedData[dbName].todos ) {
+    storedData[dbName].todos.forEach(function(todo) {
+      if ( !todo.completed ) {
+        openTodos++;
+      }
+    });
+  }
 
-      // Now create the notification
-      chrome.notifications.create('reminder', {
-          type: 'basic',
-          iconUrl: 'icon_128.png',
-          title: 'Don\'t forget!',
-          message: 'You have '+storedData.data.length+' things to do. Wake up, dude!'
-       }, function(notificationId) {})
-    }
+  if (openTodos>0) {
+    // Now create the notification
+    chrome.notifications.create('reminder', {
+        type: 'basic',
+        iconUrl: 'icon_128.png',
+        title: 'Don\'t forget!',
+        message: 'You have '+openTodos+' things to do. Wake up, dude!'
+     }, function(notificationId) {})
+  }
 }
+
+// When the user clicks on the notification, we want to open the To Do list
+chrome.notifications.onClicked.addListener(function( notificationId ) {
+  launch();
+  chrome.notifications.clear(notificationId, function() {});
+});
 
 chrome.app.runtime.onLaunched.addListener(launch);
 
 chrome.alarms.onAlarm.addListener(function( alarm ) {
-  chrome.storage.local.get({'data': []}, showNotification);
+  chrome.storage.local.get(dbName, showNotification);
 });

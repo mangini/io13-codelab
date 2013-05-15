@@ -53,7 +53,6 @@
   Controller.prototype.showAll = function () {
     this.model.read(function (data) {
       this.$todoList.innerHTML = this._parseForURLs(this.view.show(data));
-      this._parseForImageURLs();
     }.bind(this));
   };
 
@@ -63,7 +62,6 @@
   Controller.prototype.showActive = function () {
     this.model.read({ completed: 0 }, function (data) {
       this.$todoList.innerHTML = this._parseForURLs(this.view.show(data));
-      this._parseForImageURLs();
     }.bind(this));
   };
 
@@ -73,7 +71,6 @@
   Controller.prototype.showCompleted = function () {
     this.model.read({ completed: 1 }, function (data) {
       this.$todoList.innerHTML = this._parseForURLs(this.view.show(data));
-      this._parseForImageURLs();
     }.bind(this));
   };
 
@@ -127,8 +124,6 @@
         // Instead of re-rendering the whole view just update
         // this piece of it
         label.innerHTML = this._parseForURLs(value);
-        this._parseForImageURLs();
-
       } else if (value.length === 0) {
         // No value was entered in the input. We'll remove the todo item.
         this.removeItem(id);
@@ -140,7 +135,6 @@
 
       // Remove the editing class
       li.className = li.className.replace('editing', '');
-
     }.bind(this);
 
     // Append the editing class
@@ -386,54 +380,6 @@
          }
        );
      });
-  };
-
-  Controller.prototype._parseForImageURLs = function () {
-    // remove old blobs to avoid memory leak:
-    this._clearObjectURL();
-
-    var links = this.$todoList.querySelectorAll('a[data-src]:not(.thumbnail)');
-    var re = /\.(png|jpg|jpeg|svg|gif)$/;
-
-    for (var i = 0; i<links.length; i++) {
-      var url = links[i].getAttribute('data-src');
-      if (re.test(url)) {
-        links[i].classList.add('thumbnail');
-        this._requestRemoteImageAndAppend(url, links[i]);
-      }
-    }
-  };
-
-
-  Controller.prototype._requestRemoteImageAndAppend = function(imageUrl, element) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', imageUrl);
-    xhr.responseType = 'blob';
-    xhr.onload = function() {
-      var img = document.createElement('img');
-      img.setAttribute('data-src', imageUrl);
-      img.className = 'icon';
-      var objURL = this._createObjectURL(xhr.response);
-      img.setAttribute('src', objURL);
-      element.appendChild(img);
-    }.bind(this);
-    xhr.send();
-  };
-
-  Controller.prototype._clearObjectURL = function() {
-    if (this.objectURLs) {
-      this.objectURLs.forEach(function(objURL) {
-        URL.revokeObjectURL(objURL);
-      });
-      this.objectURLs = null;
-    }
-  };
-
-  Controller.prototype._createObjectURL = function(blob) {
-    var objURL = URL.createObjectURL(blob);
-    this.objectURLs = this.objectURLs || [];
-    this.objectURLs.push(objURL);
-    return objURL;
   };
 
   // Export to window

@@ -1,3 +1,10 @@
+body {
+  -webkit-app-region: drag;
+}
+input, button, label, a {
+  -webkit-app-region: no-drag;
+}
+
 html,
 body {
 	margin: 0;

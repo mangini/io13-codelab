@@ -412,3 +412,8 @@ label[for='toggle-all'] {
 .hidden{
 	display:none;
 }
+
+.thumbnail img[data-src] {
+  max-width: 100px;
+  max-height: 28px;
+}

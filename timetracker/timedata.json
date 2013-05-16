@@ -5,33 +5,33 @@
     "note": ""
   },
   { 
-    "title": "Step 2 - Create a simple ToDo List",
-    "timeInMinutes": 10,
-    "note": ""
-  },
-  { 
-    "title": "Step 3 - Persist To Do's",
-    "timeInMinutes": 10,
-    "note": ""
-  },
-  { 
-    "title": "Step 4 - Alarms and notifications",
+    "title": "Step 2 - Import and Adapt ToDoMVC app",
     "timeInMinutes": 20,
     "note": ""
   },
   { 
-    "title": "Step 5 - Parse URLs and open then in a Webview",
+    "title": "Step 3 - Alarms and notifications",
     "timeInMinutes": 20,
     "note": ""
   },
   { 
-    "title": "Step 6 - Add images from the web",
-    "timeInMinutes": 20,
-    "note": ""
-  },
-  { 
-    "title": "Step 7 - Export ToDo's to the filesystem",
+    "title": "Step 4 - Parse URLs and open then in a Webview",
     "timeInMinutes": 10,
+    "note": ""
+  },
+  { 
+    "title": "Step 5 - Add images from the web",
+    "timeInMinutes": 20,
+    "note": ""
+  },
+  { 
+    "title": "Step 6 - Export ToDo's to the filesystem",
+    "timeInMinutes": 20,
+    "note": ""
+  },
+  { 
+    "title": "Catch up and Advanced challenge",
+    "timeInMinutes": 20,
     "note": ""
   }
   

@@ -67,7 +67,8 @@
   Store.prototype.findAll = function (callback) {
     callback = callback || function () {};
     chrome.storage.local.get(this._dbName, function(storage) {
-      callback.call(this, storage[this._dbName].todos);
+      var todos = storage[this._dbName] && storage[this._dbName].todos || [];
+      callback.call(this, todos);
     }.bind(this));
   };
 

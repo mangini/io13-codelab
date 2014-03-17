@@ -83,4 +83,4 @@
  document.getElementById('exportToDisk').
    addEventListener('click', doExportToDisk);
 
-})()
+})();

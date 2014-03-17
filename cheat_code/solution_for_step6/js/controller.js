@@ -139,7 +139,6 @@
 
       // Remove the editing class
       li.className = li.className.replace('editing', '');
-
     }.bind(this);
 
     // Append the editing class

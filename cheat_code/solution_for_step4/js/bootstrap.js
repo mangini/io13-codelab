@@ -1,2 +1,2 @@
-    // Bootstrap app data
-    window.app = {};
+// Bootstrap app data
+window.app = {};

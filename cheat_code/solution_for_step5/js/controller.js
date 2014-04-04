@@ -100,7 +100,6 @@
 
   };
 
-
   /**
    * Hides the label text and creates an input to edit the title of the item.
    * When you hit enter or blur out of the input it saves it and updates the UI
@@ -140,7 +139,6 @@
 
       // Remove the editing class
       li.className = li.className.replace('editing', '');
-
     }.bind(this);
 
     // Append the editing class
@@ -149,7 +147,7 @@
     var input = document.createElement('input');
     input.className = 'edit';
 
-    // Get the innerHTML of the label instead of requesting the data from the
+    // Get the innerText of the label instead of requesting the data from the
     // ORM. If this were a real DB this would save a lot of time and would avoid
     // a spinner gif.
     input.value = label.innerText;

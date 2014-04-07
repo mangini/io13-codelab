@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "I/O Codelab - Step 1",
+  "name": "Codelab - Step 1",
   "version": "1",
   "icons": {
     "128": "icon_128.png"

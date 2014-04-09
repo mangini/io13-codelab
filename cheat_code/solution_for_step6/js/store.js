@@ -80,48 +80,48 @@
    * @param {object} data The data to save back into the DB
    * @param {function} callback The callback to fire after saving
    */
-Store.prototype.save = function (id, updateData, callback) {
-  chrome.storage.local.get(this._dbName, function(storage) {
-    var data = storage[this._dbName];
-    var todos = data.todos;
+  Store.prototype.save = function (id, updateData, callback) {
+    chrome.storage.local.get(this._dbName, function(storage) {
+      var data = storage[this._dbName];
+      var todos = data.todos;
 
-    callback = callback || function () {};
+      callback = callback || function () {};
 
-    // If an ID was actually given, find the item and update each property
-    if (typeof id !== 'object'  || Array.isArray(id) ) {
-      var ids = [].concat( id );
-      ids.forEach(function(id) {
-        for (var i = 0; i < todos.length; i++) {
-          if (todos[i].id == id) {
-            for (var x in updateData) {
-              todos[i][x] = updateData[x];
+      // If an ID was actually given, find the item and update each property
+      if (typeof id !== 'object'  || Array.isArray(id) ) {
+        var ids = [].concat( id );
+        ids.forEach(function(id) {
+          for (var i = 0; i < todos.length; i++) {
+            if (todos[i].id == id) {
+              for (var x in updateData) {
+                todos[i][x] = updateData[x];
+              }
             }
           }
-        }
-      });
+        });
 
-      chrome.storage.local.set(storage, function() {
-        chrome.storage.local.get(this._dbName, function(storage) {
-          callback.call(this, storage[this._dbName].todos);
+        chrome.storage.local.set(storage, function() {
+          chrome.storage.local.get(this._dbName, function(storage) {
+            callback.call(this, storage[this._dbName].todos);
+          }.bind(this));
         }.bind(this));
-      }.bind(this));
 
-    } else {
-      callback = updateData;
+      } else {
+        callback = updateData;
 
-      updateData = id;
+        updateData = id;
 
-      // Generate an ID
-      updateData.id = new Date().getTime();
+        // Generate an ID
+        updateData.id = new Date().getTime();
 
-      todos.push(updateData);
-      chrome.storage.local.set(storage, function() {
-        callback.call(this, [updateData]);
-      }.bind(this));
+        todos.push(updateData);
+        chrome.storage.local.set(storage, function() {
+          callback.call(this, [updateData]);
+        }.bind(this));
 
-    }
-  }.bind(this));
-};
+      }
+    }.bind(this));
+  };
 
   /**
    * Will remove an item from the Store based on its ID

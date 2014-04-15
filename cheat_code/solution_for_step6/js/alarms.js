@@ -18,7 +18,7 @@
        document.getElementById('toggleAlarm').innerText = newLabel;
 
        if (callback) callback(hasAlarm);
-     })
+     });
    }
 
    function createAlarm() {

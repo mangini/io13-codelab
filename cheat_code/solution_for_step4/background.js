@@ -32,7 +32,7 @@ function showNotification(storedData) {
         iconUrl: 'icon_128.png',
         title: 'Don\'t forget!',
         message: 'You have '+openTodos+' things to do. Get cracking!'
-     }, function(notificationId) {})
+      }, function(notificationId) {});
   }
 }
 

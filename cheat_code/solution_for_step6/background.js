@@ -36,13 +36,12 @@ function showNotification(storedData) {
   }
 }
 
-// When the user clicks on the notification, we want to open the To Do list
+chrome.app.runtime.onLaunched.addListener(launch);
+
 chrome.notifications.onClicked.addListener(function( notificationId ) {
   launch();
   chrome.notifications.clear(notificationId, function() {});
 });
-
-chrome.app.runtime.onLaunched.addListener(launch);
 
 chrome.alarms.onAlarm.addListener(function( alarm ) {
   chrome.storage.local.get(dbName, showNotification);

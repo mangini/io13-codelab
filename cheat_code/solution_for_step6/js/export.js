@@ -24,13 +24,12 @@
     }.bind(this));
   }
 
-  // Given a FileEntry,
   function exportToFileEntry(fileEntry) {
     savedFileEntry = fileEntry;
 
     var status = document.getElementById('status');
 
-    // Use this to get a pretty name appropriate for displaying
+    // Use this to get a file path appropriate for displaying
     chrome.fileSystem.getDisplayPath(fileEntry, function(path) {
       fileDisplayPath = path;
       status.innerText = 'Exporting to '+path;
@@ -40,25 +39,28 @@
 
       fileEntry.createWriter(function(fileWriter) {
 
+        var truncated = false;
+        var blob = new Blob([contents]);
+
         fileWriter.onwriteend = function(e) {
-          status.innerText = 'Export to '+
-               fileDisplayPath+' completed';
+          if (!truncated) {
+            truncated = true;
+            // You need to explicitly set the file size to truncate
+            // any content that might have been there before
+            this.truncate(blob.size);
+            return;
+          }
+          status.innerText = 'Export to '+fileDisplayPath+' completed';
         };
 
         fileWriter.onerror = function(e) {
           status.innerText = 'Export failed: '+e.toString();
         };
 
-        var blob = new Blob([contents]);
         fileWriter.write(blob);
-
-        // You need to explicitly set the file size to truncate
-        // any content that might was there before
-        fileWriter.truncate(blob.size);
 
       });
     });
-
   }
 
   function doExportToDisk() {
@@ -80,7 +82,6 @@
     }
   }
 
- document.getElementById('exportToDisk').
-   addEventListener('click', doExportToDisk);
+  document.getElementById('exportToDisk').addEventListener('click', doExportToDisk);
 
 })();

@@ -31,18 +31,17 @@ function showNotification(storedData) {
         type: 'basic',
         iconUrl: 'icon_128.png',
         title: 'Don\'t forget!',
-        message: 'You have '+openTodos+' things to do. Wake up, dude!'
-     }, function(notificationId) {})
+        message: 'You have '+openTodos+' things to do. Get cracking!'
+      }, function(notificationId) {});
   }
 }
 
-// When the user clicks on the notification, we want to open the To Do list
+chrome.app.runtime.onLaunched.addListener(launch);
+
 chrome.notifications.onClicked.addListener(function( notificationId ) {
   launch();
   chrome.notifications.clear(notificationId, function() {});
 });
-
-chrome.app.runtime.onLaunched.addListener(launch);
 
 chrome.alarms.onAlarm.addListener(function( alarm ) {
   chrome.storage.local.get(dbName, showNotification);
